@@ -1,2 +1,3 @@
 # open-api
-OpenAPI
+OpenAPI  
+https://koheiitoh.github.io/open-api/dist/index.html
