@@ -1,0 +1,24 @@
+description: Bad Request
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status:
+          type: number
+          description: ステータス
+          enum:
+            - 9
+          example: 9
+        message:
+          type: string
+          description: エラーメッセージ
+          example: リクエストエラー
+      required:
+        - status
+        - message
+    examples:
+      example-1:
+        value:
+          status: 9
+          message: リクエストエラー

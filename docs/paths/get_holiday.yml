@@ -1,0 +1,75 @@
+post:
+  summary: 祝日一覧取得API
+  tags:
+    - Holiday
+  description: 登録されている祝日情報を全て取得する（振替休日込み）
+  parameters:
+    - in: header
+      name: x-api-key
+      schema:
+        type: string
+        description: APIキー
+      required: true
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                description: |-
+                  ステータス  
+
+                  1:正常/9:異常
+                enum:
+                  - 1
+                example: 1
+              data:
+                type: object
+                properties:
+                  holidays:
+                    type: array
+                    description: |-
+                      祝日リスト  
+
+                      YYYY-MM-DD形式の日付の配列
+                    items:
+                      type: string
+                      description: 祝日
+                      example: '2023-01-01'
+                required:
+                  - holidays
+            required:
+              - status
+          examples:
+            example-1:
+              value:
+                status: 1
+                data:
+                  holidays:
+                    - '2023-01-01'
+                    - '2023-01-02'
+                    - '2023-01-09'
+                    - '2023-02-11'
+                    - '2023-02-23'
+                    - '2023-03-21'
+                    - '2023-04-29'
+                    - '2023-05-03'
+                    - '2023-05-04'
+                    - '2023-05-05'
+                    - '2023-07-17'
+                    - '2023-08-11'
+                    - '2023-09-18'
+                    - '2023/09/23'
+                    - '2023/10/09'
+                    - '2023/11/03'
+                    - '2023/11/23'
+    '400':
+      $ref: ../responses/bad_request.yml
+    '404':
+      $ref: ../responses/not_found.yml
+    '500':
+      $ref: ../responses/internal_server_error.yml

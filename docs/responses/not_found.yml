@@ -1,0 +1,23 @@
+description: Not Found
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - status
+        - message
+      properties:
+        status:
+          type: number
+          description: ステータス
+          enum:
+            - 9
+        message:
+          type: string
+          description: エラーメッセージ
+          example: Not Found
+    examples:
+      example-1:
+        value:
+          status: 9
+          message: Not Found

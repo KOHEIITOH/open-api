@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: KI
+  version: "1.0"
+  description: |
+    # KIAPI
+
+  contact:
+    name: KI
+    url: http://www.example.com/support
+    email: koheiito39@gmail.com
+
+servers:
+  - url: "https://"
+    description: 本番環境
+  - url: "http://stg"
+    description: STG環境
+  - url: "http://dev"
+    description: DEV環境
+  - url: "http://localhost:8080"
+    description: ローカル環境
+
+tags:
+  - name: Holiday
+    description: 祝日
+  - name: Others
+    description: その他
+
+paths:
+  # 祝日
+  /api/get_holiday:
+    $ref: ./paths/get_holiday.yml
+  # その他
+  /api/other:
+    $ref: ./paths/others.yml
+
+components:
+  responses:
+    OK-Statsu-Only:
+      $ref: ./responses/ok.yml
+    Bad-Request:
+      $ref: ./responses/bad_request.yml
+    Not-Found:
+      $ref: ./responses/not_found.yml
+    Internal-Server-Error:
+      $ref: ./responses/internal_server_error.yml
