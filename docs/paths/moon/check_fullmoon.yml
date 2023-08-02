@@ -1,0 +1,73 @@
+post:
+  summary: 満月判定API
+  tags:
+    - Moon
+  description: 日付から満月か判定
+  parameters:
+    - in: header
+      name: x-api-key
+      schema:
+        type: string
+        description: APIキー
+      required: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: number
+              description: |-
+                日付  
+
+                YYYY-MM-DD形式の日付
+          required:
+            - date
+        examples:
+          example-1:
+            value:
+              date: '2023-07-18'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                description: |-
+                  ステータス  
+
+                  1:正常/9:異常
+                enum:
+                  - 1
+                example: 1
+              data:
+                type: object
+                properties:
+                  moon_type:
+                    type: integer
+                    description: |-
+                      月タイプ  
+
+                      0=その他 / 1=満月 / 2=新月
+                    example: 2
+                required:
+                  - moon_type
+            required:
+              - status
+          examples:
+            example-1:
+              value:
+                status: 1
+                data:
+                  moon_type: 1
+    '400':
+      $ref: ../../responses/bad_request.yml
+    '404':
+      $ref: ../../responses/not_found.yml
+    '500':
+      $ref: ../../responses/internal_server_error.yml

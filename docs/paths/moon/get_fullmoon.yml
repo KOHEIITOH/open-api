@@ -1,0 +1,67 @@
+get:
+  summary: 満月一覧取得API
+  tags:
+    - Moon
+  description: |-
+    登録されている満月情報を全て取得する  
+
+    最多今年から2年分
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: number
+                description: |-
+                  ステータス  
+
+                  1:正常/9:異常
+                enum:
+                  - 1
+                example: 1
+              data:
+                type: object
+                properties:
+                  full_moons:
+                    type: array
+                    description: |-
+                      満月リスト  
+
+                      YYYY-MM-DD形式の日付の配列
+                    items:
+                      type: string
+                      description: 満月日
+                      example: '2023-01-07'
+                required:
+                  - full_moons
+            required:
+              - status
+          examples:
+            example-1:
+              value:
+                status: 1
+                data:
+                  full_moons:
+                    - '2023-01-07'
+                    - '2023-02-06'
+                    - '2023-03-07'
+                    - '2023-04-06'
+                    - '2023-05-06'
+                    - '2023-06-04'
+                    - '2023-07-03'
+                    - '2023-08-02'
+                    - '2023-08-31'
+                    - '2023-09-29'
+                    - '2023-10-29'
+                    - '2023-11-27'
+                    - '2023-12-27'
+    '400':
+      $ref: ../../responses/bad_request.yml
+    '404':
+      $ref: ../../responses/not_found.yml
+    '500':
+      $ref: ../../responses/internal_server_error.yml

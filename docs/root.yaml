@@ -23,13 +23,22 @@ servers:
 tags:
   - name: Holiday
     description: 祝日
+  - name: Moon
+    description: 月
   - name: Others
     description: その他
 
 paths:
   # 祝日
   /api/get_holiday:
-    $ref: ./paths/get_holiday.yml
+    $ref: ./paths/holiday/get_holiday.yml
+  /api/update_holiday:
+    $ref: ./paths/holiday/update_holiday.yml
+  # 月
+  /api/get_fullmoon:
+    $ref: ./paths/moon/get_fullmoon.yml
+  /api/check_fullmoon:
+    $ref: ./paths/moon/check_fullmoon.yml
   # その他
   /api/other:
     $ref: ./paths/others.yml
